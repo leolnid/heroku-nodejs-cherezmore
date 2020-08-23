@@ -1,0 +1,25 @@
+{
+  "name": "cherez.more",
+  "version": "0.0.1",
+  "description": "simple rest api for server",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js"
+  },
+  "keywords": [],
+  "author": "Leonid Dukov <leonid.dyukov@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.1.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
+    "passport": "^0.4.1",
+    "sequelize": "^6.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
