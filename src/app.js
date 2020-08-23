@@ -1,6 +1,5 @@
 const express = require('express');
 const morgan = require('morgan');
-const body = require('body');
 
 
 port = process.env.port || 3000;
