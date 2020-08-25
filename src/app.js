@@ -22,7 +22,7 @@ mongoose.connect(
 );
 
 
-
+// TODO: Move to CreateApp function
 const app = express();
 app.use(morgan('short'));
 app.use(helmet());
@@ -34,6 +34,10 @@ app.use(bodyParser.json())
 
 const User = require('./models/user');
 
+
+// TODO: Move to routes and controllers folders
+// TODO: Split logic and routes
+// TODO: Add capcha for register and login
 app.post('/login', (req, res) => {
     User.findOne({ email: req.body.email })
         .exec()
@@ -67,12 +71,12 @@ app.post('/login', (req, res) => {
 })
 
 
-app.post('/logout', (req, res) => {
-    // TODO: Add logout method
-})
-
-
 app.post('/register', (req, res) => {
+    // TODO: Check, if email exist
+    // TODO: Validate email and password
+    // TODO: Check for optional data
+    // TODO: Add bio {fullname, age, adress, etc}
+
     bcrypt.hash(req.body.password, 10, (err, hash) => {
         if (err) {
             return res.status(500).json({
@@ -159,4 +163,5 @@ app.use((err, req, res, next) => {
 })
 
 
+// TODO: Start server only if connection to database success
 app.listen(port, () => console.log(`Server started on port: ${port}`))
