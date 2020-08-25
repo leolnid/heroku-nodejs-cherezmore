@@ -4,29 +4,30 @@ const mongoose = require('mongoose');
 const UserSchema = mongoose.Schema({
     _id: mongoose.Types.ObjectId,
     email: { 
-        type: mongoose.Types.String,
-        required: true
+        type: String,
+        required: true,
+        unique : true,
     },
     password: { 
-        type: mongoose.Types.String,
-        required: true
+        type: String,
+        required: true,
     },
     bio: {
-        first_name: mongoose.Types.String,
-        last_name: mongoose.Types.String,
-        address: mongoose.Types.String,
-        telephone: mongoose.Types.String
+        first_name: String,
+        last_name: String,
+        address: String,
+        telephone: String,
     },
     orders: [{ id: mongoose.Types.ObjectId }],
     active: {
-        type: mongoose.Types.Boolean,
-        default: true
+        type: Boolean,
+        default: true,
     },
     permission: {
-        type: mongoose.Types.Number,
+        type: Number,
         default: 0,
         min: 0,
-        max: 16
+        max: 16,
     }
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at'}, versionKey: false })
 
