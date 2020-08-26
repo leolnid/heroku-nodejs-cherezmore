@@ -1,5 +1,5 @@
 ## Исходные код сайта CherezMore
-Онлайн версия - [cherezmore](https://cherezmore.heroku.com)
+Онлайн версия - [cherezmore](https://cherezmore.leooo.ru/)
 
 ## ToDo:
 * [x] Basic express app
