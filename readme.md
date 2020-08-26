@@ -1,7 +1,13 @@
 ## Исходные код сайта CherezMore
 Онлайн версия - [cherezmore](https://cherezmore.leooo.ru/)
 
-## ToDo:
+## Backend:
+* [x] Create server folder
 * [x] Basic express app
 * [x] Catch errors
-* [ ] Test
+* [ ] Catch 404
+* [ ] User route
+    * [ ] GET
+    * [ ] POST
+    * [ ] UPDATE
+    * ~[ ] DELETE~

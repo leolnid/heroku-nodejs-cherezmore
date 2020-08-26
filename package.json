@@ -1,7 +1,7 @@
 {
   "name": "cherez.more",
   "version": "0.0.1",
-  "description": "simple rest api for server",
+  "description": "simple rest api",
   "main": "app.js",
   "scripts": {
     "dev": "npm i && nodemon src/app.js",
