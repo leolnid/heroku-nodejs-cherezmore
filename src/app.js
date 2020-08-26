@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -20,6 +21,7 @@ mongoose.connect(
         useUnifiedTopology: true
     }
 );
+mongoose.set('useCreateIndex', true)
 
 
 // TODO: Move to CreateApp function

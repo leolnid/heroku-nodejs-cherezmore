@@ -4,7 +4,7 @@
   "description": "simple rest api for server",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon src/app.js",
+    "dev": "npm i && nodemon src/app.js",
     "start": "node src/app.js"
   },
   "keywords": [],
