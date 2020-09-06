@@ -7,14 +7,14 @@ const UserRouter = Router();
 UserRouter.get(
   '/:id',
   Auth.checkToken,
-  // Auth.hasPermission(Roles.Admin),
+  Auth.hasPermission(Roles.Admin),
   UserController.getUserByID
 );
 
 UserRouter.get(
   '/',
   Auth.checkToken,
-  // Auth.hasPermission(Roles.Admin),
+  Auth.hasPermission(Roles.Admin),
   UserController.getAllUsers
 );
 
