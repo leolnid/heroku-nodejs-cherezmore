@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const path = require('path');
 
 // Custom variables
 const Utils = require('../utils');
@@ -217,6 +218,7 @@ function sendVerificationEmail(_user) {
         console.log('===============================================');
         console.log('dir: ' + __dirname);
         console.log('file: ' + __filename);
+        console.log('html: ' + path.join(__dirname, '\\email.html'));
         console.log('===============================================');
 
         let params = {
@@ -224,7 +226,7 @@ function sendVerificationEmail(_user) {
           to: _user.email,
           from: process.env.FROM_EMAIL,
           html: fs
-            .readFileSync(__dirname + '\\email.html', 'utf-8')
+            .readFileSync(path.join(__dirname, '\\email.html'), 'utf-8')
             .replace('$LINK', verifiLink),
         };
 
