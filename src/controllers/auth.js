@@ -214,12 +214,17 @@ function sendVerificationEmail(_user) {
       .then((SavedToken) => {
         const verifiLink = `http://${process.env.HOST}/api/auth/verify/${SavedToken.token}`;
 
+        console.log('===============================================');
+        console.log('dir: ' + __dirname);
+        console.log('file: ' + __filename);
+        console.log('===============================================');
+
         let params = {
           subject: 'Подтверждение аккаунта',
           to: _user.email,
           from: process.env.FROM_EMAIL,
           html: fs
-            .readFileSync(__dirname + '\\..\\html\\email.html', 'utf-8')
+            .readFileSync(__dirname + '\\email.html', 'utf-8')
             .replace('$LINK', verifiLink),
         };
 
