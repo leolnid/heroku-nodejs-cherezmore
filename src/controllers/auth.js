@@ -218,7 +218,7 @@ function sendVerificationEmail(_user) {
         console.log('===============================================');
         console.log('dir: ' + __dirname);
         console.log('file: ' + __filename);
-        console.log('html: ' + path.join(__dirname, '\\email.html'));
+        console.log('html: ' + path.join(__dirname, 'email.html'));
         console.log('===============================================');
 
         let params = {
@@ -226,7 +226,7 @@ function sendVerificationEmail(_user) {
           to: _user.email,
           from: process.env.FROM_EMAIL,
           html: fs
-            .readFileSync(path.join(__dirname, '\\email.html'), 'utf-8')
+            .readFileSync(path.join(__dirname, 'email.html'), 'utf-8')
             .replace('$LINK', verifiLink),
         };
 
