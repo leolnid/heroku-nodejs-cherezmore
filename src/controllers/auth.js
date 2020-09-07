@@ -10,6 +10,7 @@ const path = require('path');
 // Custom variables
 const Utils = require('../utils');
 const User = require('../models/user');
+const Token = require('../models/token');
 const { sendEmail } = require('../utils/mail');
 const utils = require('../utils');
 
@@ -138,11 +139,11 @@ exports.register = (req, res, next) => {
           });
         });
     })
-    .catch((FindUserError) => {
+    .catch((UserFindError) => {
       return res.status(500).json({
         success: false,
         error: {
-          message: FindUserError,
+          message: UserFindError,
           info:
             process.env.NODE_ENV === 'production' ? '😒' : 'Can not find user.',
         },
@@ -156,7 +157,60 @@ exports.register = (req, res, next) => {
  * @param req.params.token
  * @access Public
  */
-exports.verifiToken = (req, res, next) => {};
+exports.verifiToken = (req, res, next) => {
+  const ValidatorError = utils.validator.validateToken(req.body);
+  if (ValidatorError)
+    return res.redirect(
+      `https://${req.headers.host}/token_verification?success=false&message=InvalidToken`
+    );
+
+  Token.findOne({ token: req.params.token })
+    .exec()
+    .then((_token) => {
+      if (!_token)
+        return res.redirect(
+          `https://${req.headers.host}/token_verification?success=false&message=CannotFindToken`
+        );
+
+      User.findOne({ _id: _token.userId })
+        .exec()
+        .then((_user) => {
+          if (!_user)
+            return res.redirect(
+              `https://${req.headers.host}/token_verification?success=false&message=CannotFindUser`
+            );
+
+          if (!_user.verification.isVerified)
+            return res.redirect(
+              `https://${req.headers.host}/token_verification?success=false&message=UserAlreadyVerified`
+            );
+
+          _user.verification.isVerified = true;
+          _user
+            .save()
+            .then((SavedUser) =>
+              res.redirect(
+                `https://${req.headers.host}/token_verification?success=true&message=UserNowVerified)}`
+              )
+            )
+            .catch((UserSaveError) =>
+              res.redirect(
+                `https://${req.headers.host}/token_verification?success=false&message=CannotSaveChanges`
+              )
+            );
+        })
+        .catch((UserFindError) =>
+          res.redirect(
+            `https://${req.headers.host}/token_verification?success=false&message=CannotFindUser`
+          )
+        );
+    })
+    .catch((TokenFindError) =>
+      res.redirect(
+        `https://${req.headers.host}/token_failed?success=false&message=CannotFindToken`
+      )
+    );
+};
 
 /**
  * Send new token to user

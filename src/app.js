@@ -10,12 +10,11 @@ utils.initMongoose();
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/user', require('./routes/user'));
 
-app.get('/user/:id', (req, res) => {
-  // TODO: Return user by id
-});
-
-app.put('/api/v1/user/:id', (req, res) => {
-  // TODO: Change user data by id and return new data
+app.get('/token_verification', (req, res, next) => {
+  res.json({
+    success: req.query.success,
+    message: req.query.message,
+  });
 });
 
 app.get('/', (req, res, next) => {
