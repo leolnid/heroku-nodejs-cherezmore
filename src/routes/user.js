@@ -1,20 +1,20 @@
 const { Router } = require('express');
 const UserController = require('./../controllers/user');
-const { Auth, Roles } = require('./../utils');
+const { auth, roles } = require('./../utils');
 
 const UserRouter = Router();
 
 UserRouter.get(
   '/:id',
-  Auth.checkToken,
-  Auth.hasPermission(Roles.Admin),
+  auth.checkToken,
+  auth.hasPermission(roles.Admin),
   UserController.getUserByID
 );
 
 UserRouter.get(
   '/',
-  Auth.checkToken,
-  Auth.hasPermission(Roles.Admin),
+  auth.checkToken,
+  auth.hasPermission(roles.Admin),
   UserController.getAllUsers
 );
 

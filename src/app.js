@@ -7,25 +7,8 @@ const User = require('./models/user');
 const app = utils.createApp();
 utils.initMongoose();
 
-app.use('/auth', require('./routes/auth'));
-app.use('/user', require('./routes/user'));
-
-app.get('/user', (req, res) => {
-  User.find()
-    .exec()
-    .then((result) => {
-      res.json({
-        length: result.length,
-        users: result,
-      });
-    })
-    .catch((err) => {
-      res.status(500).json({
-        error: err,
-      });
-    });
-  // TODO: Return all users
-});
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/user', require('./routes/user'));
 
 app.get('/user/:id', (req, res) => {
   // TODO: Return user by id

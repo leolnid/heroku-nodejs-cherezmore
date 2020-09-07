@@ -7,9 +7,10 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 // Custom-modules
-const Validator = require('./validator');
-const Roles = require('./roles');
-const Auth = require('./auth');
+const validator = require('./validator');
+const roles = require('./roles');
+const auth = require('./auth');
+const mail = require('./mail');
 
 const createApp = () => {
   const app = express();
@@ -34,4 +35,4 @@ const initMongoose = () => {
   mongoose.set('useCreateIndex', true);
 };
 
-module.exports = { Validator, Auth, Roles, createApp, initMongoose };
+module.exports = { validator, auth, roles, mail, createApp, initMongoose };

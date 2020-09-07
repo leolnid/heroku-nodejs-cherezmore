@@ -1,11 +1,13 @@
 const { Router } = require('express');
+const { body } = require('express-validator');
+
 const AuthController = require('./../controllers/auth');
 
 const AuthRouter = Router();
 
-AuthRouter.use('/login', AuthController.login);
-AuthRouter.use('/register', AuthController.register);
-// AuthRouter.use('/verify/:token' /*...*/);
-// AuthRouter.use('/resend' /*...*/);
+AuthRouter.post('/login', AuthController.login);
+AuthRouter.post('/register', AuthController.register);
+AuthRouter.post('/verify', AuthController.sendToken);
+AuthRouter.get('/verify/:token', AuthController.verifiToken);
 
 module.exports = AuthRouter;
