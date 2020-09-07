@@ -10,7 +10,7 @@ exports.validatePassword = (params) =>
     : null;
 
 exports.validateToken = (params) =>
-  !this.isValidPassword(params.token) ? { message: 'Invalid token' } : null;
+  !this.isValidToken(params.token) ? { message: 'Invalid token' } : null;
 
 exports.isValidEmail = (email) => {
   let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -28,6 +28,6 @@ exports.isValidID = (id) => {
 };
 
 exports.isValidToken = (token) => {
-  let re = /^[0-9a-f]{20,100}$/;
+  let re = /^[0-9a-f]{35,45}$/;
   return re.test(token);
 };
