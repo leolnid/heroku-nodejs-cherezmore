@@ -158,7 +158,7 @@ exports.register = (req, res, next) => {
  * @access Public
  */
 exports.verifiToken = (req, res, next) => {
-  const ValidatorError = utils.validator.validateToken(req.body);
+  const ValidatorError = utils.validator.validateToken(req.params);
   if (ValidatorError)
     return res.redirect(
       `https://${req.headers.host}/token_verification?success=false&message=InvalidToken`

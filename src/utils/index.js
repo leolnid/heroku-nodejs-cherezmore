@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // Node-modules
 const express = require('express');
 const morgan = require('morgan');
@@ -14,7 +16,8 @@ const mail = require('./mail');
 
 const createApp = () => {
   const app = express();
-  app.use(morgan('short'));
+  if (process.env.NODE_ENV === 'production') app.use(morgan('short'));
+
   app.use(helmet());
   app.use(cors());
 
