@@ -180,7 +180,7 @@ exports.verifiToken = (req, res, next) => {
               `https://${req.headers.host}/token_verification?success=false&message=CannotFindUser`
             );
 
-          if (!_user.verification.isVerified)
+          if (_user.verification.isVerified)
             return res.redirect(
               `https://${req.headers.host}/token_verification?success=false&message=UserAlreadyVerified`
             );
